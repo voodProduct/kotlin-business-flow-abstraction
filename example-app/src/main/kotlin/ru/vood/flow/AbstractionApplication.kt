@@ -1,4 +1,4 @@
-package ru.vood.flow.abstraction
+package ru.vood.flow
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

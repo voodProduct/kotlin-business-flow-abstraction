@@ -19,6 +19,10 @@ repositories {
 }
 
 dependencies {
+
+    // https://mvnrepository.com/artifact/io.arrow-kt/arrow-core
+    implementation(platform("io.arrow-kt:arrow-stack:2.0.1"))
+    runtimeOnly("io.arrow-kt:arrow-core")
 //    implementation("org.springframework.boot:spring-boot-starter-webflux")
 //    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 //    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
