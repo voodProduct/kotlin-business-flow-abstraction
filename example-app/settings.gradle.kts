@@ -1,1 +1,1 @@
-rootProject.name = "abstraction"
+rootProject.name = "example-app"
