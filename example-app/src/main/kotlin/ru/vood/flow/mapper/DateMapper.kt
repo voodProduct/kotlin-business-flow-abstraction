@@ -1,8 +1,8 @@
 package ru.vood.flow.mapper
 
 import org.springframework.stereotype.Service
-import ru.vood.flow.abstraction.router.mapper.IMapper
-import ru.vood.flow.abstraction.router.mapper.MapperId
+import ru.vood.flow.abstraction.router.mapper.simple.IMapper
+import ru.vood.flow.abstraction.router.mapper.simple.MapperId
 import java.time.Instant
 
 @Service

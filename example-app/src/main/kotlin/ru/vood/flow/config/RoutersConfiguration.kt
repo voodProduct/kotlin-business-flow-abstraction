@@ -6,8 +6,8 @@ import ru.vood.flow.abstraction.router.AbstractWebRouter
 import ru.vood.flow.abstraction.router.IHandler
 import ru.vood.flow.abstraction.router.enumR.AbstractEnumRouter
 import ru.vood.flow.abstraction.router.enumR.IEnumWorker
-import ru.vood.flow.abstraction.router.mapper.AbstractMapperRouter
-import ru.vood.flow.abstraction.router.mapper.IMapper
+import ru.vood.flow.abstraction.router.mapper.simple.AbstractMapperRouter
+import ru.vood.flow.abstraction.router.mapper.simple.IMapper
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapper
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapperError

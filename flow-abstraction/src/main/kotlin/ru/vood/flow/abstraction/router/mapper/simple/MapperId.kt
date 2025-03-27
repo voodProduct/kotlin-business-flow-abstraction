@@ -1,4 +1,4 @@
-package ru.vood.flow.abstraction.router.mapper
+package ru.vood.flow.abstraction.router.mapper.simple
 
 import ru.vood.flow.abstraction.router.abstraction.byInOutClass.IWorkerIdByInOutClass
 import kotlin.reflect.KClass

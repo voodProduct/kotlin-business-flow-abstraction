@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
 import ru.vood.flow.abstraction.router.AbstractWebRouter
 import ru.vood.flow.abstraction.router.enumR.AbstractEnumRouter
-import ru.vood.flow.abstraction.router.mapper.AbstractMapperRouter
+import ru.vood.flow.abstraction.router.mapper.simple.AbstractMapperRouter
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
 import ru.vood.flow.config.INEnumRouterData
 import ru.vood.flow.config.OutEnumRouterData
