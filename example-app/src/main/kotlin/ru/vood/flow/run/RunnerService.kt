@@ -8,7 +8,7 @@ import ru.vood.flow.abstraction.router.WebRouter
 import ru.vood.flow.abstraction.router.mapper.MapperRouter
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
 import ru.vood.flow.eitherMapper.IDateMapper
-import ru.vood.flow.eitherMapper.IStringMapper
+import ru.vood.flow.eitherMapper.IIntMapper
 import java.time.Instant
 
 @Service
@@ -41,13 +41,11 @@ class RunnerService(
             val run3 = mpperRouter.mapData<Instant, String> { Instant.now() }
             println(run3)
 
-            val run4 = eitherMapperRouter.mapData<Int, String> { 1 }
+            val run4 = eitherMapperRouter.mapData<Int, String, IIntMapper> { 1 }
             println(run4)
 
-            val run5 = eitherMapperRouter.mapData<Instant, String> { Instant.now() }
+            val run5 = eitherMapperRouter.mapData<Instant, String, IDateMapper> { Instant.now() }
             println(run5)
         }
-
-
     }
 }

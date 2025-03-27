@@ -5,7 +5,8 @@ import ru.vood.flow.abstraction.router.abstraction.byInOutClass.IWorkerIdByInOut
 import kotlin.reflect.KClass
 
 
-data class ValidateMapperId<out T : Any, out R : Any>(
+data class ValidateMapperId<out T : Any, out R : Any, out ERR : IValidateMapperError>(
     val tkClass: KClass<out T>,
-    val rkClass: KClass<out R>
+    val rkClass: KClass<out R>,
+    val errkClass: KClass<out ERR>
 ) : IWorkerId

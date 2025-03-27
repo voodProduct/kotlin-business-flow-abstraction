@@ -17,6 +17,6 @@ class ValidateDateMapper : IValidateMapper<Instant, String, IDateMapper> {
         return Either.Right(data.toString())
     }
 
-    override val workerId: ValidateMapperId<Instant, String>
-        get() = ValidateMapperId(Instant::class, String::class)
+    override val workerId: ValidateMapperId<Instant, String, IDateMapper>
+        get() = ValidateMapperId(Instant::class, String::class, IDateMapper::class)
 }
