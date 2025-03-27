@@ -2,7 +2,7 @@ package ru.vood.flow.abstraction.router.mapper
 
 import ru.vood.flow.abstraction.router.abstraction.AbstractRouter
 
-class MapperRouter(
+abstract class AbstractMapperRouter(
     iWorkerList: List<IMapper<Any, Any>>
 ) : AbstractRouter<MapperId<Any, Any>, IMapper<Any, Any>>(iWorkerList) {
 

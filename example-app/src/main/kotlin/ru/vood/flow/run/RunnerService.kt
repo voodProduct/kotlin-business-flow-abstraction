@@ -4,9 +4,9 @@ import com.ocadotechnology.gembus.test.Arranger
 import kotlinx.coroutines.runBlocking
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
-import ru.vood.flow.abstraction.router.WebRouter
+import ru.vood.flow.abstraction.router.AbstractWebRouter
 import ru.vood.flow.abstraction.router.enumR.AbstractEnumRouter
-import ru.vood.flow.abstraction.router.mapper.MapperRouter
+import ru.vood.flow.abstraction.router.mapper.AbstractMapperRouter
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
 import ru.vood.flow.config.INEnumRouterData
 import ru.vood.flow.config.OutEnumRouterData
@@ -17,8 +17,8 @@ import java.time.Instant
 
 @Service
 class RunnerService(
-    val webRouter: WebRouter,
-    val mpperRouter: MapperRouter,
+    val webRouter: AbstractWebRouter,
+    val mpperRouter: AbstractMapperRouter,
     val eitherMapperRouter: EitherMapperRouter,
     val someEnumRouter: AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, SomeEnum>,
 

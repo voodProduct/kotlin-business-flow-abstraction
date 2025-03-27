@@ -2,7 +2,7 @@ package ru.vood.flow.abstraction.router
 
 import ru.vood.flow.abstraction.router.abstraction.AbstractRouter
 
-class WebRouter(
+abstract class AbstractWebRouter(
     handlers: List<IHandler<Any, Any>>
 ) : AbstractRouter<HandlerId<Any, Any>, IHandler<Any, Any>>(handlers) {
 
