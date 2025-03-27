@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import ru.vood.flow.abstraction.router.IHandler
 import ru.vood.flow.abstraction.router.WebRouter
+import ru.vood.flow.abstraction.router.enumR.AbstractEnumRouter
+import ru.vood.flow.abstraction.router.enumR.IEnumWorker
 import ru.vood.flow.abstraction.router.mapper.IMapper
 import ru.vood.flow.abstraction.router.mapper.MapperRouter
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
@@ -27,6 +29,16 @@ class RoutersConfiguration {
     @Bean
     fun eitherMapperRouterBean(handlers: List<IValidateMapper<*, *, *>>): EitherMapperRouter =
         EitherMapperRouter(handlers.map { it as IValidateMapper<Any, Any, IValidateMapperError> })
+
+
+    @Bean
+    fun abstractEnumRouterBean(handlers: List<IEnumWorker<INEnumRouterData, OutEnumRouterData, SomeEnum>>): AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, SomeEnum> {
+        val entries = SomeEnum.entries
+
+        val value =
+            object : AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, SomeEnum>(handlers, SomeEnum.entries) {}
+        return value
+    }
 
 
 }

@@ -5,8 +5,12 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
 import ru.vood.flow.abstraction.router.WebRouter
+import ru.vood.flow.abstraction.router.enumR.AbstractEnumRouter
 import ru.vood.flow.abstraction.router.mapper.MapperRouter
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
+import ru.vood.flow.config.INEnumRouterData
+import ru.vood.flow.config.OutEnumRouterData
+import ru.vood.flow.config.SomeEnum
 import ru.vood.flow.eitherMapper.IDateMapper
 import ru.vood.flow.eitherMapper.IIntMapper
 import java.time.Instant
@@ -16,6 +20,8 @@ class RunnerService(
     val webRouter: WebRouter,
     val mpperRouter: MapperRouter,
     val eitherMapperRouter: EitherMapperRouter,
+    val someEnumRouter: AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, SomeEnum>,
+
 
     ): CommandLineRunner {
     override fun run(vararg args: String?) {
@@ -46,6 +52,11 @@ class RunnerService(
 
             val run5 = eitherMapperRouter.mapData<Instant, String, IDateMapper> { Instant.now() }
             println(run5)
+
+            val mapData = someEnumRouter.mapData<INEnumRouterData, OutEnumRouterData>(
+                { Arranger.some(INEnumRouterData::class.java) },
+                { SomeEnum.Q })
+            println("someEnumRouter -> "+mapData)
         }
     }
 }
