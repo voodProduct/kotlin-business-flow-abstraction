@@ -1,9 +1,9 @@
 package ru.vood.flow.abstraction.router.abstraction
 
 abstract class AbstractRouter<rID : IWorkerId, Routed : IWorker<rID>>(
-    iRoutedList: List<Routed>
+    iWorkerList: List<Routed>
 ) {
-     val routedMap = collectAndValidateMeta(iRoutedList)
+     val routedMap = collectAndValidateMeta(iWorkerList)
 
     private fun collectAndValidateMeta(handlers: List<IWorker<rID>>): Map<rID, IWorker<rID>> {
         val prepared = handlers
