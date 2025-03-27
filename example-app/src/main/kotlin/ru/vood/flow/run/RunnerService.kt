@@ -41,10 +41,10 @@ class RunnerService(
             val run3 = mpperRouter.mapData<Instant, String> { Instant.now() }
             println(run3)
 
-            val run4 = eitherMapperRouter.mapData<Int, String, IStringMapper> { 1 }
+            val run4 = eitherMapperRouter.mapData<Int, String> { 1 }
             println(run4)
 
-            val run5 = eitherMapperRouter.mapData<Instant, String, IDateMapper> { Instant.now() }
+            val run5 = eitherMapperRouter.mapData<Instant, String> { Instant.now() }
             println(run5)
         }
 

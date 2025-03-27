@@ -8,11 +8,11 @@ class EitherMapperRouter(
     iWorkerList: List<IValidateMapper<Any, Any, IValidateMapperError>>
 ) : AbstractRouter<ValidateMapperId<Any, Any>, IValidateMapper<Any, Any, IValidateMapperError>>(iWorkerList) {
 
-    suspend inline fun <reified T : Any, reified R : Any, ERR : IValidateMapperError> mapData(crossinline data: suspend () -> T): Either<NonEmptyList<ERR>, R> {
+    suspend inline fun <reified T : Any, reified R : Any> mapData(crossinline data: suspend () -> T): Either<NonEmptyList<IValidateMapperError>, R> {
         return route<T, R>(
             data = data,
             workerIdExtractor = {
                 ValidateMapperId(T::class, R::class)
-            }) as Either<NonEmptyList<ERR>, R>
+            }) as Either<NonEmptyList<IValidateMapperError>, R>
     }
 }
