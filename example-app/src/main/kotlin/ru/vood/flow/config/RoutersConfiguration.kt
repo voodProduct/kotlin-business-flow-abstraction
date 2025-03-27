@@ -6,6 +6,9 @@ import ru.vood.flow.abstraction.router.IHandler
 import ru.vood.flow.abstraction.router.WebRouter
 import ru.vood.flow.abstraction.router.mapper.IMapper
 import ru.vood.flow.abstraction.router.mapper.MapperRouter
+import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
+import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapper
+import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapperError
 
 @Configuration
 class RoutersConfiguration {
@@ -18,6 +21,12 @@ class RoutersConfiguration {
 
 
     @Bean
-    fun mapperRouterBean(handlers: List<IMapper<*, *>>): MapperRouter = MapperRouter(handlers.map { it as IMapper<Any, Any> })
+    fun mapperRouterBean(handlers: List<IMapper<*, *>>): MapperRouter =
+        MapperRouter(handlers.map { it as IMapper<Any, Any> })
+
+    @Bean
+    fun eitherMapperRouterBean(handlers: List<IValidateMapper<*, *, *>>): EitherMapperRouter =
+        EitherMapperRouter(handlers.map { it as IValidateMapper<Any, Any, IValidateMapperError> })
+
 
 }

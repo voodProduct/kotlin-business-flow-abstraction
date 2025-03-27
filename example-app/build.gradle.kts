@@ -24,6 +24,7 @@ dependencies {
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("com.ocadotechnology.gembus:test-arranger:1.6.3")
     implementation(project(":flow-abstraction"))
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")

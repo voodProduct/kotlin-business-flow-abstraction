@@ -6,15 +6,13 @@ import ru.vood.flow.abstraction.router.abstraction.IWorker
 
 interface IValidateMapperError
 
-interface IValidateMapper<TT : Any, out RR : Any> :
+interface IValidateMapper<TT : Any, out RR : Any, out ERR : IValidateMapperError> :
     IWorker<ValidateMapperId<TT, RR>> {
     override suspend fun <T, R> doWork(data: T): R {
-        val tt = data as TT
-        val handle = handle(tt)
-        return handle as R
+        return handle(data as TT) as R
     }
 
-    fun handle(data: TT): Either<NonEmptyList<IValidateMapperError>, RR>
+    suspend fun handle(data: TT): Either<NonEmptyList<ERR>, RR>
 
 
 }
