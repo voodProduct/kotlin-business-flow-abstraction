@@ -7,7 +7,8 @@ import ru.vood.flow.abstraction.router.abstraction.enumR.EnumWorkerId
 
 @Service
 class SomeEnumRouter(
-    iWorkerList: List<IWorker<INEnumRouterData, OutEnumRouterData, EnumWorkerId<SomeEnum>>>) : AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, SomeEnum>(
+    iWorkerList: List<IWorker<INEnumRouterData, OutEnumRouterData, EnumWorkerId<SomeEnum>>>
+) : AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, SomeEnum>(
     iWorkerList,
     SomeEnum.entries
 ) {

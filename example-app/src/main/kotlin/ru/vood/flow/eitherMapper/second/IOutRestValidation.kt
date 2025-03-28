@@ -7,7 +7,7 @@ import ru.vood.flow.abstraction.router.abstraction.mapAndValidate.ValidateMapper
 import ru.vood.flow.eitherMapper.first.IInputDataГрязная
 import ru.vood.flow.eitherMapper.first.IInputDataЧистая
 
-interface IOutRestValidation: IWorker<IInputDataГрязная,
+interface IOutRestValidation : IWorker<IInputDataГрязная,
         Either<NonEmptyList<IOutRestValidationError>, IInputDataЧистая>,
         ValidateMapperId<IInputDataГрязная, IInputDataЧистая, IOutRestValidationError>
         >

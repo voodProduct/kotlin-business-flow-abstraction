@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import ru.vood.flow.abstraction.router.abstraction.mapAndValidate.IValidateMapperError
 import ru.vood.flow.abstraction.router.abstraction.mapAndValidate.ValidateMapperId
 
-sealed interface IIntMapper: IValidateMapperError
+sealed interface IIntMapper : IValidateMapperError
 
 @Service
 class FirstEitherMapper : IRestValidation {
