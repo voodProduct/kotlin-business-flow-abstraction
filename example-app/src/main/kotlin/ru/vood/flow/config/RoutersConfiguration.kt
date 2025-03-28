@@ -10,9 +10,9 @@ import ru.vood.flow.abstraction.router.enumR.EnumWorkerId
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.EitherMapperRouter
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapper
 import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapperError
-import ru.vood.flow.config.enumR.INEnumRouterData
-import ru.vood.flow.config.enumR.OutEnumRouterData
-import ru.vood.flow.config.enumR.SomeEnum
+import ru.vood.flow.enumR.INEnumRouterData
+import ru.vood.flow.enumR.OutEnumRouterData
+import ru.vood.flow.enumR.SomeEnum
 
 @Configuration
 class RoutersConfiguration {

@@ -1,4 +1,4 @@
-package ru.vood.flow.config.enumR
+package ru.vood.flow.enumR
 
 import org.springframework.stereotype.Service
 import ru.vood.flow.abstraction.router.abstraction.IWorker
@@ -6,9 +6,9 @@ import ru.vood.flow.abstraction.router.enumR.AbstractEnumRouter
 import ru.vood.flow.abstraction.router.enumR.EnumWorkerId
 
 @Service
-class SomeEnumRouter(
-    iWorkerList: List<IWorker<INEnumRouterData, OutEnumRouterData, EnumWorkerId<SomeEnum>>>) : AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, SomeEnum>(
+class OtherEnumRouter(
+    iWorkerList: List<IWorker<INEnumRouterData, OutEnumRouterData, EnumWorkerId<OtherEnum>>>) : AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, OtherEnum>(
     iWorkerList,
-    SomeEnum.entries
+    OtherEnum.entries
 ) {
 }

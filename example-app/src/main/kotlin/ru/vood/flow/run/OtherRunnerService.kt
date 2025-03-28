@@ -12,6 +12,10 @@ import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapperErro
 import ru.vood.flow.config.enumR.*
 import ru.vood.flow.eitherMapper.IDateMapper
 import ru.vood.flow.eitherMapper.IIntMapper
+import ru.vood.flow.enumR.INEnumRouterData
+import ru.vood.flow.enumR.OtherEnum
+import ru.vood.flow.enumR.OtherEnumRouter
+import ru.vood.flow.enumR.OutEnumRouterData
 import java.time.Instant
 
 @Service

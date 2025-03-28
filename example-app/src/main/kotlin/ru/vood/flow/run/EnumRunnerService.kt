@@ -6,10 +6,10 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
 //import ru.vood.flow.abstraction.router.AbstractWebRouter
 //import ru.vood.flow.abstraction.router.mapper.simple.AbstractMapperRouter
-import ru.vood.flow.config.enumR.INEnumRouterData
-import ru.vood.flow.config.enumR.OutEnumRouterData
-import ru.vood.flow.config.enumR.SomeEnum
-import ru.vood.flow.config.enumR.SomeEnumRouter
+import ru.vood.flow.enumR.INEnumRouterData
+import ru.vood.flow.enumR.OutEnumRouterData
+import ru.vood.flow.enumR.SomeEnum
+import ru.vood.flow.enumR.SomeEnumRouter
 
 @Service
 class EnumRunnerService(

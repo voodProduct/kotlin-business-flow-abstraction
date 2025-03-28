@@ -3,10 +3,10 @@ package ru.vood.flow.enumR
 import org.springframework.stereotype.Service
 import ru.vood.flow.abstraction.router.abstraction.IWorker
 import ru.vood.flow.abstraction.router.enumR.EnumWorkerId
-import ru.vood.flow.config.enumR.INEnumRouterData
-import ru.vood.flow.config.enumR.OtherEnum
-import ru.vood.flow.config.enumR.OutEnumRouterData
-import ru.vood.flow.config.enumR.SomeEnum
+import ru.vood.flow.enumR.INEnumRouterData
+import ru.vood.flow.enumR.OtherEnum
+import ru.vood.flow.enumR.OutEnumRouterData
+import ru.vood.flow.enumR.SomeEnum
 
 @Service
 class OtherEnumWorker: IWorker<INEnumRouterData, OutEnumRouterData, EnumWorkerId<OtherEnum>> {
