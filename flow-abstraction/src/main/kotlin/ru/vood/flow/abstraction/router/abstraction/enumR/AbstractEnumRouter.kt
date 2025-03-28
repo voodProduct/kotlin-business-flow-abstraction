@@ -7,7 +7,12 @@ import kotlin.enums.EnumEntries
 abstract class AbstractEnumRouter<T : Any, R : Any, E : Enum<E>>(
     iWorkerList: List<IWorker<T, R, EnumWorkerId<E>>>,
     eVals: EnumEntries<E>,
-) : AbstractRouter<T, R, EnumWorkerId<E>, IWorker<T, R, EnumWorkerId<E>>>(iWorkerList) {
+) : AbstractRouter<
+        T,
+        R,
+        EnumWorkerId<E>,
+        IWorker<T, R, EnumWorkerId<E>>
+        >(iWorkerList) {
 
     init {
         val workerIEnumWorker = iWorkerList.map { it.workerId.emun }.toSet()
