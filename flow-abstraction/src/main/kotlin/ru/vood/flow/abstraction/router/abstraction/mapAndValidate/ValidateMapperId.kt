@@ -1,7 +1,6 @@
 package ru.vood.flow.abstraction.router.abstraction.mapAndValidate
 
 import ru.vood.flow.abstraction.router.abstraction.IWorkerId
-import ru.vood.flow.abstraction.router.abstraction.byInOutClass.IWorkerIdByInOutClass
 import kotlin.reflect.KClass
 
 

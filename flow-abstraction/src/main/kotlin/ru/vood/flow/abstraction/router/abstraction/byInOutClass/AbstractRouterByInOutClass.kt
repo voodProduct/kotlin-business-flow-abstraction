@@ -9,7 +9,7 @@ abstract class AbstractRouterByInOutClass<
         worker : IWorkerByInOutClass<T, R, wId>
         >(
     iWorkerList: List<worker>
-) : AbstractRouter<T, R, wId, worker>(iWorkerList){
+) : AbstractRouter<T, R, wId, worker>(iWorkerList) {
 
     suspend inline fun <reified IT : T, reified IR : R> mapData(
         crossinline data: suspend () -> IT,
