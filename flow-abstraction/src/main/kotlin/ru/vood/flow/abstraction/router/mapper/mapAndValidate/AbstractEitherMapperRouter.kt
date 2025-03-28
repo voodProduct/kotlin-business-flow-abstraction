@@ -5,7 +5,7 @@ import arrow.core.NonEmptyList
 import ru.vood.flow.abstraction.router.abstraction.AbstractRouter
 import ru.vood.flow.abstraction.router.abstraction.IWorker
 
-class EitherMapperRouter<
+abstract class AbstractEitherMapperRouter<
         T : Any,
         R : Any,
         ERR : IValidateMapperError
