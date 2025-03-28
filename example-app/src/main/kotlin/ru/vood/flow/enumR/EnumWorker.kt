@@ -1,18 +1,19 @@
 package ru.vood.flow.enumR
 
 import org.springframework.stereotype.Service
-import ru.vood.flow.abstraction.router.enumR.IEnumWorker
-import ru.vood.flow.abstraction.router.enumR.OnlyEnumId
-import ru.vood.flow.config.INEnumRouterData
-import ru.vood.flow.config.OutEnumRouterData
-import ru.vood.flow.config.SomeEnum
+import ru.vood.flow.abstraction.router.abstraction.IWorker
+import ru.vood.flow.abstraction.router.enumR.EnumWorkerId
+import ru.vood.flow.config.enumR.INEnumRouterData
+import ru.vood.flow.config.enumR.OutEnumRouterData
+import ru.vood.flow.config.enumR.SomeEnum
 
 @Service
-class EnumWorker: IEnumWorker<INEnumRouterData, OutEnumRouterData, SomeEnum> {
-    override fun handle(data: INEnumRouterData): OutEnumRouterData {
+class EnumWorker: IWorker<INEnumRouterData, OutEnumRouterData, EnumWorkerId<SomeEnum>> {
+
+    override val workerId: EnumWorkerId<SomeEnum>
+        get() = EnumWorkerId(SomeEnum.Q)
+
+    override suspend fun doWork(data: INEnumRouterData): OutEnumRouterData {
         return OutEnumRouterData(data.i.toString())
     }
-
-    override val workerId: OnlyEnumId<SomeEnum>
-        get() = OnlyEnumId(SomeEnum.Q)
 }

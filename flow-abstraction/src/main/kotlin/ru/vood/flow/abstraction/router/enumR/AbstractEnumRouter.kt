@@ -1,12 +1,13 @@
 package ru.vood.flow.abstraction.router.enumR
 
 import ru.vood.flow.abstraction.router.abstraction.AbstractRouter
+import ru.vood.flow.abstraction.router.abstraction.IWorker
 import kotlin.enums.EnumEntries
 
-abstract class AbstractEnumRouter<TT : Any, RR : Any, E : Enum<E>>(
-    iWorkerList: List<IEnumWorker<TT, RR, E>>,
+abstract class AbstractEnumRouter<T : Any, R : Any, E : Enum<E>>(
+    iWorkerList: List<IWorker<T, R, EnumWorkerId<E>>>,
     eVals: EnumEntries<E>,
-) : AbstractRouter<OnlyEnumId<E>, IEnumWorker<TT, RR, E>>(iWorkerList) {
+) : AbstractRouter<T, R, EnumWorkerId<E>, IWorker<T, R, EnumWorkerId<E>>>(iWorkerList) {
 
     init {
         val workerIEnumWorker = iWorkerList.map { it.workerId.emun }.toSet()
@@ -14,13 +15,13 @@ abstract class AbstractEnumRouter<TT : Any, RR : Any, E : Enum<E>>(
         require(filter.isEmpty()){"Not found implementation ${IEnumWorker::class.java.canonicalName} for next EnumValues $filter of Enum type ${eVals.first()::class.java.canonicalName}"}
     }
 
-    suspend inline fun <reified T : TT, reified R : RR> mapData(
-        crossinline data: suspend () -> T,
+    suspend inline fun <reified IT : T, reified IR : R> mapData(
+        crossinline data: suspend () -> IT,
         enumF: () -> E
-    ): R =
-        route<T, R>(
-            data = data,
-            workerIdExtractor = {
-                OnlyEnumId(enumF())
-            })
+    ): R {
+        val validateMapperId = EnumWorkerId(enumF())
+        return data().let { dataDto ->
+            routedMap[validateMapperId]?.doWork(dataDto)
+        } ?: error("For router ${this::class.java.canonicalName} not found worker with Id $validateMapperId")
+    }
 }

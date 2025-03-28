@@ -1,4 +1,4 @@
-package ru.vood.flow.config
+package ru.vood.flow.config.enumR
 
 enum class SomeEnum {
     Q

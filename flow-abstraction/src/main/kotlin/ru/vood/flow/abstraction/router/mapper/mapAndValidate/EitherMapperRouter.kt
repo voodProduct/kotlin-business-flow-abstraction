@@ -3,16 +3,33 @@ package ru.vood.flow.abstraction.router.mapper.mapAndValidate
 import arrow.core.Either
 import arrow.core.NonEmptyList
 import ru.vood.flow.abstraction.router.abstraction.AbstractRouter
+import ru.vood.flow.abstraction.router.abstraction.IWorker
 
-class EitherMapperRouter(
-    iWorkerList: List<IValidateMapper<Any, Any, IValidateMapperError>>
-) : AbstractRouter<ValidateMapperId<Any, Any, IValidateMapperError>, IValidateMapper<Any, Any, IValidateMapperError>>(iWorkerList) {
+class EitherMapperRouter<
+        T : Any,
+        R : Any,
+        ERR : IValidateMapperError
+        >(
+    iWorkerList: List<IWorker<T, Either<NonEmptyList<ERR>, R>, ValidateMapperId<T, R, ERR>>>
+) : AbstractRouter<
+        T,
+        Either<NonEmptyList<ERR>, R>,
+        ValidateMapperId<T, R, ERR>,
+        IWorker<T,
+                Either<NonEmptyList<ERR>, R>,
+                ValidateMapperId<T, R, ERR>
+                >
+//        IValidateMapper<T,R, IValidateMapperError>
+        >(iWorkerList = iWorkerList) {
 
-    suspend inline fun <reified T : Any, reified R : Any, reified ERR : IValidateMapperError> mapData(crossinline data: suspend () -> T): Either<NonEmptyList<ERR>, R> {
-        return route<T, R>(
-            data = data,
-            workerIdExtractor = {
-                ValidateMapperId(T::class, R::class, ERR::class)
-            }) as Either<NonEmptyList<ERR>, R>
+    suspend inline fun <reified IT : T, reified IR : R, reified IERR : ERR> mapData(
+        crossinline data: suspend () -> IT
+    ): Either<NonEmptyList<ERR>, R> {
+        val validateMapperId = ValidateMapperId(IT::class, IR::class, IERR::class)
+        return data().let { dataDto ->
+            routedMap[validateMapperId]?.doWork(dataDto)
+        } ?: error("For router ${this::class.java.canonicalName} not found worker with Id $validateMapperId")
     }
+
+
 }

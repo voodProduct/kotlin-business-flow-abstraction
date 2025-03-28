@@ -2,7 +2,8 @@ package ru.vood.flow.abstraction.router.enumR
 
 import ru.vood.flow.abstraction.router.abstraction.IWorkerId
 
-data class OnlyEnumId<E : Enum<E>
+@JvmInline
+value class EnumWorkerId<E : Enum<E>
 //        out T : Any, out R : Any
         >(
     val emun: E
