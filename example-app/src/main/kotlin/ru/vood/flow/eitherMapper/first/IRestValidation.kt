@@ -1,4 +1,4 @@
-package ru.vood.flow.eitherMapper
+package ru.vood.flow.eitherMapper.first
 
 import arrow.core.Either
 import arrow.core.NonEmptyList

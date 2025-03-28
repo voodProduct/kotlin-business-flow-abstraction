@@ -1,4 +1,4 @@
-package ru.vood.flow.eitherMapper
+package ru.vood.flow.eitherMapper.first
 
 import arrow.core.Either
 import arrow.core.NonEmptyList
@@ -9,7 +9,7 @@ import ru.vood.flow.abstraction.router.mapper.mapAndValidate.ValidateMapperId
 sealed interface IIntMapper: IValidateMapperError
 
 @Service
-class ValidateIntIMapper : IRestValidation {
+class FirstEitherMapper : IRestValidation {
 
     override val workerId: ValidateMapperId<IInputDataГрязная, IInputDataЧистая, IRestValidationError>
         get() = ValidateMapperId(RestInputData::class, InputData::class, IRestValidationError::class)
