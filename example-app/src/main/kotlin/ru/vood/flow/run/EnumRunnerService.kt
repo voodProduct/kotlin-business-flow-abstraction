@@ -14,14 +14,14 @@ import ru.vood.flow.enumR.SomeEnumRouter
 @Service
 class EnumRunnerService(
     val router: SomeEnumRouter,
-    ): CommandLineRunner {
+) : CommandLineRunner {
     override fun run(vararg args: String?) {
 
         runBlocking {
             val mapData = router.mapData<INEnumRouterData, OutEnumRouterData>(
                 { Arranger.some(INEnumRouterData::class.java) },
                 { SomeEnum.Q })
-            println("${router::class.java.canonicalName} -> "+mapData)
+            println("${router::class.java.canonicalName} -> " + mapData)
         }
     }
 }
