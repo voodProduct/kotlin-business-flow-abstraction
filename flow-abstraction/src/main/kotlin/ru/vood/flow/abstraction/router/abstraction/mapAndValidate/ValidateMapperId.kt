@@ -1,4 +1,4 @@
-package ru.vood.flow.abstraction.router.mapper.mapAndValidate
+package ru.vood.flow.abstraction.router.abstraction.mapAndValidate
 
 import ru.vood.flow.abstraction.router.abstraction.IWorkerId
 import ru.vood.flow.abstraction.router.abstraction.byInOutClass.IWorkerIdByInOutClass

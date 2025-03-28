@@ -1,4 +1,4 @@
-package ru.vood.flow.abstraction.router.enumR
+package ru.vood.flow.abstraction.router.abstraction.enumR
 
 import ru.vood.flow.abstraction.router.abstraction.AbstractRouter
 import ru.vood.flow.abstraction.router.abstraction.IWorker

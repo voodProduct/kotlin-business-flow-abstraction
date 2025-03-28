@@ -3,8 +3,8 @@ package ru.vood.flow.eitherMapper.first
 import arrow.core.Either
 import arrow.core.NonEmptyList
 import org.springframework.stereotype.Service
-import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapperError
-import ru.vood.flow.abstraction.router.mapper.mapAndValidate.ValidateMapperId
+import ru.vood.flow.abstraction.router.abstraction.mapAndValidate.IValidateMapperError
+import ru.vood.flow.abstraction.router.abstraction.mapAndValidate.ValidateMapperId
 
 sealed interface IIntMapper: IValidateMapperError
 

@@ -1,4 +1,4 @@
-package ru.vood.flow.abstraction.router.mapper.mapAndValidate
+package ru.vood.flow.abstraction.router.abstraction.mapAndValidate
 
 import arrow.core.Either
 import arrow.core.NonEmptyList

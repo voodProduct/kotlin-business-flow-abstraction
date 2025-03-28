@@ -5,8 +5,8 @@ package ru.vood.flow.config
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import ru.vood.flow.abstraction.router.abstraction.IWorker
-import ru.vood.flow.abstraction.router.enumR.AbstractEnumRouter
-import ru.vood.flow.abstraction.router.enumR.EnumWorkerId
+import ru.vood.flow.abstraction.router.abstraction.enumR.AbstractEnumRouter
+import ru.vood.flow.abstraction.router.abstraction.enumR.EnumWorkerId
 import ru.vood.flow.enumR.INEnumRouterData
 import ru.vood.flow.enumR.OutEnumRouterData
 import ru.vood.flow.enumR.SomeEnum

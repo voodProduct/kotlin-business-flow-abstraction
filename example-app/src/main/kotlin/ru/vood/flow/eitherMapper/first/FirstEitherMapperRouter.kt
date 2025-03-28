@@ -1,8 +1,8 @@
 package ru.vood.flow.eitherMapper.first
 
 import org.springframework.stereotype.Service
-import ru.vood.flow.abstraction.router.mapper.mapAndValidate.AbstractEitherMapperRouter
-import ru.vood.flow.abstraction.router.mapper.mapAndValidate.IValidateMapperError
+import ru.vood.flow.abstraction.router.abstraction.mapAndValidate.AbstractEitherMapperRouter
+import ru.vood.flow.abstraction.router.abstraction.mapAndValidate.IValidateMapperError
 
 
 sealed interface IInputDataГрязная
