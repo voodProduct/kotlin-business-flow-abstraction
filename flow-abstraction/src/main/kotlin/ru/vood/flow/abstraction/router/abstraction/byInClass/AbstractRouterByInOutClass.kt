@@ -2,11 +2,11 @@ package ru.vood.flow.abstraction.router.abstraction.byInClass
 
 import ru.vood.flow.abstraction.router.abstraction.AbstractRouter
 
-abstract class AbstractRouterByInOutClass<
+abstract class AbstractRouterByInClass<
         T : Any,
         R : Any,
-        wId : IWorkerIdByInOutClass<T, R>,
-        worker : IWorkerByInOutClass<T, R, wId>
+        wId : IWorkerIdByInClass<T>,
+        worker : IWorkerByInClass<T, R, wId>
         >(
     iWorkerList: List<worker>
 ) : AbstractRouter<T, R, wId, worker>(iWorkerList) {
