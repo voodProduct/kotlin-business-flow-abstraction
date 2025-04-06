@@ -17,7 +17,7 @@ class OtherRunnerService(
         runBlocking {
             val mapData = router.mapData<INEnumRouterData, OutEnumRouterData>(
                 { Arranger.some(INEnumRouterData::class.java) },
-                { OtherEnum.Q })
+                { OtherEnum.OtherEnum_Q })
             println("${router::class.java.canonicalName} -> " + mapData)
         }
     }
