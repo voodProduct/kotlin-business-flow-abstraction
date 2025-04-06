@@ -1,4 +1,4 @@
-package ru.vood.flow.enumR
+package ru.vood.flow.enumR.other
 
 import ru.vood.flow.abstraction.router.abstraction.enumR.IEnumWorkerId
 

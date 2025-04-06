@@ -5,8 +5,8 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Service
 import ru.vood.flow.enumR.INEnumRouterData
-import ru.vood.flow.enumR.OtherEnum
-import ru.vood.flow.enumR.OtherEnumRouter
+import ru.vood.flow.enumR.other.OtherEnum
+import ru.vood.flow.enumR.other.OtherEnumRouter
 import ru.vood.flow.enumR.OutEnumRouterData
 
 @Service
