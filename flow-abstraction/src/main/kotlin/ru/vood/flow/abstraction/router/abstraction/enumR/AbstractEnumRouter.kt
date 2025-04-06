@@ -19,7 +19,7 @@ abstract class AbstractEnumRouter<T : Any, R : Any, E>
               E : IEnumWorkerId<out E> {
 
     init {
-        val workerIEnumWorker = iWorkerList.map { it.workerId.emun() }.toSet()
+        val workerIEnumWorker = iWorkerList.map { it.workerId.enumValue() }.toSet()
         val filter = eVals.filter { !workerIEnumWorker.contains(it) }
         require(filter.isEmpty()) { """Fot router ${this::class.java.canonicalName} 
             |           Not found worker implementation ${IEnumWorker::class.java.canonicalName} 
