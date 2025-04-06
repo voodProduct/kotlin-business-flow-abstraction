@@ -4,4 +4,4 @@ import java.time.Instant
 
 data class InstantWrapped(
     val instant: Instant,
-): IInputDto
+) : IInputDto

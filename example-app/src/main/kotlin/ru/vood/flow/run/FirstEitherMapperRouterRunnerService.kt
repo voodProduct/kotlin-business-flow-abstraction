@@ -16,7 +16,8 @@ class FirstEitherMapperRouterRunnerService(
     override fun run(vararg args: String?) {
 
         runBlocking {
-            val mapData = router.mapData<RestInputData, InputData, IRestValidationError> { Arranger.some(RestInputData::class.java) }
+            val mapData =
+                router.mapData<RestInputData, InputData, IRestValidationError> { Arranger.some(RestInputData::class.java) }
             println("${router::class.java.canonicalName} -> " + mapData)
         }
     }

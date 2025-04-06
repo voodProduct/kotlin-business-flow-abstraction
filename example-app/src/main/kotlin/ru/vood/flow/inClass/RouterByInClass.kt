@@ -8,7 +8,7 @@ import ru.vood.flow.inClass.dto.IInputDto
 class RouterByInClass(
     iWorkerList: List<IHandlerByInClass<*>>
 ) : AbstractRouterByInClass<IInputDto, String, HandlerByInClassId<IInputDto>, IHandlerByInClass<IInputDto>>(
-    iWorkerList.map { it as  IHandlerByInClass<IInputDto> }
+    iWorkerList.map { it as IHandlerByInClass<IInputDto> }
 ) {
 
     final suspend inline fun <reified IT : IInputDto> processInput(
