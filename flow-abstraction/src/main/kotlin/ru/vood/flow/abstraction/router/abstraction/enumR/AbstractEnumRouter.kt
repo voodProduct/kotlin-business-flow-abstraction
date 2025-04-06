@@ -21,9 +21,11 @@ abstract class AbstractEnumRouter<T : Any, R : Any, E>
     init {
         val workerIEnumWorker = iWorkerList.map { it.workerId.enumValue() }.toSet()
         val filter = eVals.filter { !workerIEnumWorker.contains(it) }
-        require(filter.isEmpty()) { """Fot router ${this::class.java.canonicalName} 
+        require(filter.isEmpty()) {
+            """Fot router ${this::class.java.canonicalName} 
             |           Not found worker implementation ${IEnumWorker::class.java.canonicalName} 
-            |           for next EnumValues $filter of Enum type ${eVals.first()::class.java.canonicalName}""".trimMargin() }
+            |           for next EnumValues $filter of Enum type ${eVals.first()::class.java.canonicalName}""".trimMargin()
+        }
     }
 
     suspend inline fun <reified IT : T, reified IR : R> mapData(

@@ -8,18 +8,12 @@ interface IEnumWorker<
         out E
         >
     : IWorker<T, R, E>
-        where E: Enum<out E>,
-              E: IEnumWorkerId<out E>
-{
+        where E : Enum<out E>,
+              E : IEnumWorkerId<out E> {
 
     override suspend fun doWork(data: T): R {
-        return handle(data as T) as R
+        return handle(data)
     }
-
-    //    override suspend fun <T, R> doWork(data: T): R {
-//        print(this::class.java.canonicalName+" -> ")
-//        return handle(data as TT) as R
-//    }
 
     fun handle(data: T): R
 
