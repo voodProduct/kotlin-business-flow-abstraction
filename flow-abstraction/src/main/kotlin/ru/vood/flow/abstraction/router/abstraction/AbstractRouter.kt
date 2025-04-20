@@ -1,5 +1,14 @@
 package ru.vood.flow.abstraction.router.abstraction
 
+
+/**
+ * Абстрактный класс абстрактного роутера, реализующий интерфейс {@link IRouter}. Используется для маршрутизации запросов между рабочими объектами.
+ *
+ * @param <T> Тип входных данных обрабатываемых рабочим объектом.
+ * @param <R> Тип результата обработки рабочего объекта.
+ * @param <WORKER_ID> Идентификатор рабочего объекта.
+ * @param <I_WORKER> Интерфейс рабочего объекта.
+ */
 abstract class AbstractRouter<
         T : Any,
         R : Any,
@@ -8,9 +17,23 @@ abstract class AbstractRouter<
         >(
     iWorkerList: List<I_WORKER>
 ) : IRouter<T, R, WORKER_ID, I_WORKER> {
+
+    /**
+     * Карта рабочих объектов, доступная для маршрутизации.
+     */
     override val routedMap: Map<WORKER_ID, IWorker<T, R, WORKER_ID>> = this.collectAndValidateMeta(iWorkerList)
 
 
+    /**
+     * Метод для маршрутизации данных к соответствующему рабочему объекту.
+     *
+     * @param <IT> Реализованный тип входных данных.
+     * @param <IR> Реализованный тип возвращаемых результатов.
+     * @param data Лямбда-функция, предоставляющая данные для обработки.
+     * @param idF Лямбда-функция, возвращающая идентификатор рабочего объекта.
+     * @return Результат обработки данным рабочим объектом.
+     * @throws IllegalStateException Если рабочий объект с указанным идентификатором не найден.
+     */
     suspend inline fun <reified IT : T, reified IR : R> route(
         crossinline data: suspend () -> IT,
         idF: () -> WORKER_ID
