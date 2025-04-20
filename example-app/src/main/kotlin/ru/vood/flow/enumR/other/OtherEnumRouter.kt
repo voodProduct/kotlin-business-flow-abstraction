@@ -6,10 +6,10 @@ import ru.vood.flow.abstraction.router.abstraction.enumR.IEnumWorker
 import ru.vood.flow.enumR.INEnumRouterData
 import ru.vood.flow.enumR.OutEnumRouterData
 
-@Service
-class OtherEnumRouter(
-    iWorkerList: List<IEnumWorker<INEnumRouterData, OutEnumRouterData, OtherEnum>>
-) : AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, OtherEnum>(
-    iWorkerList,
-    OtherEnum.entries
-)
+//@Service
+//class OtherEnumRouter(
+//    iWorkerList: List<IEnumWorker<INEnumRouterData, OutEnumRouterData, OtherEnumWrapper>>
+//) : AbstractEnumRouter<INEnumRouterData, OutEnumRouterData, OtherEnum>(
+//    iWorkerList,
+//    OtherEnum.entries
+//)
