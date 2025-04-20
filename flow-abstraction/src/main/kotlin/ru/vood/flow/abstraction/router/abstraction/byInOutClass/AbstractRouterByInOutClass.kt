@@ -17,7 +17,7 @@ abstract class AbstractRouterByInOutClass<
     ): IR {
         val validateMapperId = idF()
         return data().let { dataDto ->
-            routedMap[validateMapperId]?.doWork(dataDto) as IR?
+            routedMap[validateMapperId]?.doWork(dataDto, validateMapperId) as IR?
         } ?: error("For router ${this::class.java.canonicalName} not found worker with Id $validateMapperId")
     }
 }

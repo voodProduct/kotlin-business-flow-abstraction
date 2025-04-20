@@ -5,13 +5,12 @@ import ru.vood.flow.abstraction.router.abstraction.IWorker
 interface IEnumWorker<
         in T : Any,
         out R : Any,
-        out E
+        E
         >
     : IWorker<T, R, E>
-        where E : Enum<out E>,
-              E : IEnumWorkerId<out E> {
+        where E : Enum<out E> {
 
-    override suspend fun doWork(data: T): R {
+    override suspend fun doWork(data: T, wId: E): R {
         return handle(data)
     }
 

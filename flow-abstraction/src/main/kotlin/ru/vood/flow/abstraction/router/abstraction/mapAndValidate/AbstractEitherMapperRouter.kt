@@ -27,7 +27,7 @@ abstract class AbstractEitherMapperRouter<
     ): Either<NonEmptyList<ERR>, R> {
         val validateMapperId = ValidateMapperId(IT::class, IR::class, IERR::class)
         return data().let { dataDto ->
-            routedMap[validateMapperId]?.doWork(dataDto)
+            routedMap[validateMapperId]?.doWork(dataDto, validateMapperId)
         } ?: error("For router ${this::class.java.canonicalName} not found worker with Id $validateMapperId")
     }
 

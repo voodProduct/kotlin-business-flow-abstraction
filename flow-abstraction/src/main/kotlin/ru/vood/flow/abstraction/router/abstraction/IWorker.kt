@@ -3,8 +3,8 @@ package ru.vood.flow.abstraction.router.abstraction
 interface IWorker<
         in T : Any,
         out R : Any,
-        out rId : IWorkerId
+         WORKER_ID
         > {
-    val workerId: rId
-    suspend fun doWork(data: T): R
+    val workerId: Set<WORKER_ID>
+    suspend fun doWork(data: T, wId: WORKER_ID): R
 }
