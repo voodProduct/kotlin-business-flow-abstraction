@@ -24,16 +24,11 @@ dependencies {
     implementation(platform("io.arrow-kt:arrow-stack:2.0.1"))
     implementation("org.springframework:spring-web:6.2.5")
     api("io.arrow-kt:arrow-core-jvm:2.0.1")
-//    implementation("org.springframework.boot:spring-boot-starter-webflux")
-//    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-//    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-//    implementation("org.jetbrains.kotlin:kotlin-reflect")
-//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-//    testImplementation("org.springframework.boot:spring-boot-starter-test")
-//    testImplementation("io.projectreactor:reactor-test")
-//    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-//    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
-//    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    testImplementation(kotlin("test"))
+//    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7-1.4-M3")
+    testImplementation("io.kotest:kotest-runner-junit5:5.9.1")
+    testImplementation("com.ocadotechnology.gembus:test-arranger:1.6.4")
 }
 
 kotlin {
