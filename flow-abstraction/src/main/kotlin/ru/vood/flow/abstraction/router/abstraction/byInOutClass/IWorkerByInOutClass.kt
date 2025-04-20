@@ -2,6 +2,15 @@ package ru.vood.flow.abstraction.router.abstraction.byInOutClass
 
 import ru.vood.flow.abstraction.router.abstraction.IWorker
 
+/**
+ * Интерфейс рабочего объекта, используемого для обработки входных данных типа [T]
+ * и возвращения результата типа [R]. Основное отличие заключается в специализации
+ * идентификатора рабочего объекта через интерфейс [IWorkerIdByInOutClass].
+ *
+ * @param T Общий тип входных данных, принимаемых рабочим объектом.
+ * @param R Общий тип результата, возвращаемого рабочим объектом.
+ * @param WORKER_ID Специализированный тип идентификатора рабочего объекта, унаследованный от [IWorkerIdByInOutClass].
+ */
 interface IWorkerByInOutClass<
         T : Any,
         out R : Any,
