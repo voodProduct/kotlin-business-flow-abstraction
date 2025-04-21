@@ -3,6 +3,19 @@ package ru.vood.flow.abstraction.router.abstraction.enumR
 import ru.vood.flow.abstraction.router.abstraction.IRouter
 import kotlin.enums.EnumEntries
 
+/**
+ * Абстрактный класс маршрутизатора для работы с перечисляемыми значениями (enums),
+ * обеспечивающий управление выполнением различных обработчиков (workers) на основе указанных значений.
+ *
+ * Этот класс обеспечивает проверку наличия соответствующих обработчиков для каждого перечислимого значения
+ * и вызывает соответствующий обработчик для указанного значения.
+ *
+ * @param T Тип входных данных.
+ * @param R Тип результата.
+ * @param E Перечисление, используемое для управления обработчиками.
+ * @param iWorkerList Список зарегистрированных обработчиков.
+ * @param eVals Набор допустимых значений перечисления.
+ */
 abstract class AbstractEnumRouter<T : Any, R : Any, E>
     (
     iWorkerList: List<IEnumWorker<T, R, E>>,
@@ -16,6 +29,10 @@ abstract class AbstractEnumRouter<T : Any, R : Any, E>
         where E : Enum<E>
  {
 
+     /**
+      * Проверяет наличие всех необходимых обработчиков для каждого перечислимого значения.
+      * Если какой-то обработчик отсутствует, выбрасывается исключение.
+      */
     init {
         val workerIEnumWorker = iWorkerList.flatMap { it.workerId }.map { it.name }.toSet()
         val filter = eVals.filter { !workerIEnumWorker.contains(it.name) }
@@ -27,7 +44,14 @@ abstract class AbstractEnumRouter<T : Any, R : Any, E>
     }
 
 
-
+     /**
+      * Выполняет обработку данных с использованием соответствующего обработчика,
+      * выбранного на основании заданного перечислимого значения.
+      *
+      * @param data Заготовка данных для обработки.
+      * @param enumF Функциональный блок, возвращающий значение перечисления.
+      * @return Преобразованное значение типа R.
+      */
     suspend inline fun <reified IT : T, reified IR : R> mapData(
         crossinline data: suspend () -> IT,
         enumF: () -> E

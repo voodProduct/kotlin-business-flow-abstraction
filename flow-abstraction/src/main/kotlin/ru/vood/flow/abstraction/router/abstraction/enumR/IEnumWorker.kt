@@ -11,9 +11,9 @@ interface IEnumWorker<
         where E : Enum<out E> {
 
     override suspend fun doWork(data: T, wId: E): R {
-        return handle(data)
+        return handle(data, wId)
     }
 
-    fun handle(data: T): R
+    fun handle(data: T, wId: E): R
 
 }
