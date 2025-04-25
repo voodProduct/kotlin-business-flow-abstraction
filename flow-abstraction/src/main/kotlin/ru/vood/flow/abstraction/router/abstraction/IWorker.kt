@@ -10,7 +10,7 @@ package ru.vood.flow.abstraction.router.abstraction
 interface IWorker<
         in T : Any,
         out R : Any,
-         WORKER_ID
+        WORKER_ID
         > {
     /**
      * Множество идентификаторов, связанных с данным работником.

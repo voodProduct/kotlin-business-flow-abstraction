@@ -2,6 +2,7 @@ package ru.vood.flow.abstraction.router.abstraction.byInOutClass
 
 import ru.vood.flow.abstraction.router.abstraction.IWorkerId
 import kotlin.reflect.KClass
+
 /**
  * Интерфейс идентификатора рабочего объекта, специально разработанный для хранилища, где тип данных входа и выхода фиксируется заранее.
  * Расширяет стандартный интерфейс [IWorkerId], предоставляя дополнительную информацию о типах входных и выходных данных.
@@ -15,6 +16,7 @@ interface IWorkerIdByInOutClass<out T : Any, out R : Any> : IWorkerId {
      * Полезно для дополнительной проверки типов данных при обработке.
      */
     val tkClass: KClass<out T>
+
     /**
      * Хранит информацию о классе выходных данных, возвращаемых рабочим объектом.
      * Помогает гарантировать правильность преобразования и представления данных.

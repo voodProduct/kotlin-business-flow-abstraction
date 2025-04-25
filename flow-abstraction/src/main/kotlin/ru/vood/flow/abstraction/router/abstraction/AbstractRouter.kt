@@ -41,7 +41,7 @@ abstract class AbstractRouter<
         val workerId = idF()
         val let = data().let { dataDto ->
             routedMap[workerId]?.doWork(dataDto, workerId) as IR?
-        }   ?: error("For router ${this::class.java.canonicalName} not found worker with Id $workerId")
+        } ?: error("For router ${this::class.java.canonicalName} not found worker with Id $workerId")
         return let
     }
 

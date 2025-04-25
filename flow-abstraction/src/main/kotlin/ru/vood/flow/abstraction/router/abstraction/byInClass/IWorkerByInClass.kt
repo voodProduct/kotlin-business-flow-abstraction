@@ -17,4 +17,4 @@ interface IWorkerByInClass<
         /** Тип возвращаемых данных*/
         out R : Any,
         /**Специфичный тип идентификатора*/
-         WORKER_ID : IWorkerIdByInClass<T>> : IWorker<T, R, WORKER_ID>
+        WORKER_ID : IWorkerIdByInClass<T>> : IWorker<T, R, WORKER_ID>
