@@ -16,7 +16,7 @@ interface IWorker<
      * Множество идентификаторов, связанных с данным работником.
      * Позволяет одному работнику иметь несколько возможных идентификаторов.
      */
-    val workerId: Set<WORKER_ID>
+    val workerIds: Set<WORKER_ID>
 
     /**
      * Функция для выполнения основной работы, которую выполняет работник.
@@ -26,4 +26,17 @@ interface IWorker<
      * @return Обработанный результат.
      */
     suspend fun doWork(data: T, wId: WORKER_ID): R
+}
+
+interface IWorkerSingleId<
+        in T : Any,
+        out R : Any,
+        WORKER_ID
+        > : IWorker<T, R, WORKER_ID> {
+    val workerId: WORKER_ID
+
+    override val workerIds: Set<WORKER_ID>
+        get() = setOf(workerId)
+
+    suspend fun doWork(data: T): R = doWork(data, workerId)
 }

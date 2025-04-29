@@ -33,7 +33,7 @@ abstract class AbstractEnumRouter<T : Any, R : Any, E>
      * Если какой-то обработчик отсутствует, выбрасывается исключение.
      */
     init {
-        val workerIEnumWorker = iWorkerList.flatMap { it.workerId }.map { it.name }.toSet()
+        val workerIEnumWorker = iWorkerList.flatMap { it.workerIds }.map { it.name }.toSet()
         val filter = eVals.filter { !workerIEnumWorker.contains(it.name) }
         require(filter.isEmpty()) {
             """Fot router ${this::class.java.canonicalName} 

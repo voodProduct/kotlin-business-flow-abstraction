@@ -1,6 +1,7 @@
 package ru.vood.flow.abstraction.router.abstraction.enumR
 
 import ru.vood.flow.abstraction.router.abstraction.IWorker
+import ru.vood.flow.abstraction.router.abstraction.IWorkerSingleId
 
 /**
  * Интерфейс `IEnumWorker` расширяет интерфейс `IWorker`, определяя специфический рабочий процесс обработки данных
@@ -47,3 +48,13 @@ interface IEnumWorker<
     fun handle(data: T, wId: E): R
 
 }
+
+interface IEnumWorkerSingleId<
+        /**Входящие данные (Any), любые типы допустимы*/
+        in T : Any,
+        /**Выходящий результат (Any), любой тип результата разрешен*/
+        out R : Any,
+        /** Идентификатор воркера Ограничение параметра типа: должно быть перечисляемым типом*/
+        E
+        > : IEnumWorker<T, R, E>, IWorkerSingleId<T, R, E>
+        where E : Enum<out E>

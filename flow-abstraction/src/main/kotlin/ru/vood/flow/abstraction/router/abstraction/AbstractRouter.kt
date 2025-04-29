@@ -34,8 +34,8 @@ abstract class AbstractRouter<
      * @return Результат обработки данным рабочим объектом.
      * @throws IllegalStateException Если рабочий объект с указанным идентификатором не найден.
      */
-    suspend inline fun <reified IT : T, reified IR : R> route(
-        crossinline data: suspend () -> IT,
+    suspend fun <IT : T, IR : R> route(
+        data: suspend () -> IT,
         idF: () -> WORKER_ID
     ): R {
         val workerId = idF()

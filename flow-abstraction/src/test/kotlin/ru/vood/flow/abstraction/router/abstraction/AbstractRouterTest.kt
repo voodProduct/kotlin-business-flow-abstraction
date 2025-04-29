@@ -43,7 +43,7 @@ enum class TestWorkerId : IWorkerId {
 
 // Тестовый рабочий объект
 class TestWorker(private val id: TestWorkerId) : IWorker<String, String, TestWorkerId> {
-    override val workerId: Set<TestWorkerId> = setOf(id)
+    override val workerIds: Set<TestWorkerId> = setOf(id)
 
     override suspend fun doWork(data: String, wId: TestWorkerId): String {
         return "$data processed by $wId"

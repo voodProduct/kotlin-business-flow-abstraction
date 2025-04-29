@@ -41,7 +41,7 @@ interface ITestWorker<T : IInTestDto, R : IOutTestDto> : IWorkerByInOutClass<T, 
 
 
 open class T1 : ITestWorker<In_1, Out_1> {
-    override val workerId: Set<InOutIdDto<In_1, Out_1>>
+    override val workerIds: Set<InOutIdDto<In_1, Out_1>>
         get() = setOf(InOutIdDto(In_1::class, Out_1::class))
 
     override suspend fun doWork(data: In_1, wId: InOutIdDto<In_1, Out_1>): Out_1 = Out_1
@@ -50,7 +50,7 @@ open class T1 : ITestWorker<In_1, Out_1> {
 class TDunlicate : T1()
 
 class T2 : ITestWorker<InTestDto2_3, OutTestDto2_3> {
-    override val workerId: Set<InOutIdDto<InTestDto2_3, OutTestDto2_3>>
+    override val workerIds: Set<InOutIdDto<InTestDto2_3, OutTestDto2_3>>
         get() = setOf(InOutIdDto(In_2::class, Out_2::class), InOutIdDto(In_3::class, Out_3::class))
 
     override suspend fun doWork(data: InTestDto2_3, wId: InOutIdDto<InTestDto2_3, OutTestDto2_3>): OutTestDto2_3 =
@@ -66,6 +66,6 @@ class TestAbstractRouterByInOutClass(iWorkerList: List<ITestWorker<out IInTestDt
     ) {
 
     suspend inline fun <reified IT : IInTestDto, reified IR : IOutTestDto> mapData(
-        crossinline data: suspend () -> IT
+        noinline data: suspend () -> IT
     ): IR = route<IT, IR>(data) { InOutIdDto(IT::class, IR::class) } as IR
 }

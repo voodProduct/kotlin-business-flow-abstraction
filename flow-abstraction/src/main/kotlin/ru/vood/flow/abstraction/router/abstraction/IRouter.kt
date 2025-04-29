@@ -31,7 +31,7 @@ interface IRouter<
     fun collectAndValidateMeta(handlers: List<IWorker<T, R, WORKER_ID>>): Map<WORKER_ID, IWorker<T, R, WORKER_ID>> {
         // Флаттеринг списка рабочих объектов для формирования пар 'идентификатор'->'рабочий'
         val prepared = handlers
-            .flatMap { iWorker -> iWorker.workerId.map { wId -> wId to iWorker } }
+            .flatMap { iWorker -> iWorker.workerIds.map { wId -> wId to iWorker } }
 
         // Группировка по идентификаторам для выявления дубликатов
         val groupByForAssertionError = prepared.groupBy { it.first }

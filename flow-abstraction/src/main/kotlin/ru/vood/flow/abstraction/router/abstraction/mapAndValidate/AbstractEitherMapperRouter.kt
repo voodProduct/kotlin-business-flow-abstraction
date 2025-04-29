@@ -42,7 +42,7 @@ abstract class AbstractEitherMapperRouter<
      * @return Объект либо с ошибками, либо с успешным результатом преобразования.
      */
     suspend inline fun <reified IT : T, reified IR : R, reified IERR : ERR> mapData(
-        crossinline data: suspend () -> IT
+        noinline data: suspend () -> IT
     ): Either<NonEmptyList<ERR>, R> {
         // Получаем идентификатор для текущего маршрута отображения
         val validateMapperId = ValidateMapperId(IT::class, IR::class, IERR::class)
