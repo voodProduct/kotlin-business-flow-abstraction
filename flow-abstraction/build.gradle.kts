@@ -21,9 +21,12 @@ repositories {
 dependencies {
 
     // https://mvnrepository.com/artifact/io.arrow-kt/arrow-core
-    implementation(platform("io.arrow-kt:arrow-stack:2.0.1"))
+    implementation(platform("io.arrow-kt:arrow-stack:2.1.1"))
+    implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.10.2"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("org.springframework:spring-web:6.2.5")
-    api("io.arrow-kt:arrow-core-jvm:2.0.1")
+    implementation("org.springframework:spring-webflux:6.2.5")
+    api("io.arrow-kt:arrow-core-jvm:2.1.1")
 
     testImplementation(kotlin("test"))
 //    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7-1.4-M3")
