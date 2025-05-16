@@ -24,7 +24,7 @@ interface IWebClient<T, R> {
      * @param rq Запрос, передаваемый в клиент, согласно типу параметра [T].
      * @return Спецификация запроса, готовая к отправке на удалённый сервер.
      */
-    fun prepareRequest(rq: T): WebClient.RequestBodySpec
+    fun prepareRequest(rq: T): WebClient.RequestHeadersSpec<*>
 
     /**
      * Отправляет подготовленный запрос и возвращает обработанный результат в виде ожидаемого типа [R].
