@@ -6,27 +6,51 @@ import kotlin.reflect.full.isSubclassOf
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.full.primaryConstructor
 
+/**
+ * Рекурсивно устанавливает все nullable-поля объекта и его вложенных структур (коллекций, data-классов) в `null`.
+ * Non-nullable поля остаются без изменений.
+ *
+ * @param T тип объекта (должен быть non-nullable и иметь primary constructor).
+ * @return Новый экземпляр объекта с обнулёнными nullable-полями.
+ *
+ * @throws IllegalArgumentException если у класса нет primary constructor.
+ *
+ * Пример использования:
+ * ```kotlin
+ * data class Person(val name: String, val age: Int?, val friends: List<Person?>)
+ * val person = Person("Alice", 30, listOf(Person("Bob", null, emptyList())))
+ * val processed = person.setAllNullableFieldsToNull()
+ * // Результат: Person(name="Alice", age=null, friends=[Person(name="Bob", age=null, friends=[])])
+ * ```
+ */
 fun <T : Any> T.setAllNullableFieldsToNull(): T {
+    // Получаем KClass текущего объекта
     val kClass = this::class
+    // Проверяем наличие primary constructor (обязательно для data-классов)
     val constructor = kClass.primaryConstructor ?: error("$kClass does not have a primary constructor")
 
+    // Строим аргументы для конструктора, обрабатывая каждый параметр
     val args = constructor
         .parameters
         .associateWith { param ->
             val any = when {
-                // Если параметр nullable — сразу null
+                // Если тип параметра nullable — заменяем на null
                 param.type.isMarkedNullable -> null
-                // Если параметр коллекция (List/Set/Map) — обрабатываем элементы
+                // Если параметр — коллекция (List/Set/Map), обрабатываем её элементы
                 param.type.isCollectionOrMap() -> {
+                    // Находим соответствующее свойство класса
                     val property = kClass.memberProperties.find { it.name == param.name }
+                    // Получаем значение свойства и обрабатываем коллекцию
                     property?.getter?.call(this)?.let { collection ->
                         processCollection(collection)
                     }
                 }
-                // Если параметр data-класс — рекурсивный вызов
+                // Обычные поля (non-nullable, не коллекции)
                 else -> {
+                    // Находим свойство и его значение
                     kClass.memberProperties.find { it.name == param.name }
                         ?.getter?.call(this)?.let { value ->
+                            // Если значение — data-класс, рекурсивно обрабатываем его
                             if (value::class.isData) {
                                 value.setAllNullableFieldsToNull()
                             } else {
@@ -35,34 +59,21 @@ fun <T : Any> T.setAllNullableFieldsToNull(): T {
                         }
                 }
             }
-
             any
-
-//            if (param.type.isMarkedNullable) {
-//                null
-//            } else {
-//                kClass
-//                    .memberProperties
-//                    .find { it.name == param.name }
-//                    ?.let { property ->
-//                        property
-//                            .getter
-//                            .call(this)
-//                            ?.let { data ->
-//                                if (data::class.isData) {
-//                                    data.setAllNullableFieldsToNull()
-//                                } else {
-//                                    data
-//                                }
-//                            }
-//                    }
-//            }
         }
+    // Создаём новый экземпляр с обработанными аргументами
     return constructor.callBy(args)
 }
 
 /**
- * Обрабатывает коллекции (List/Set/Map), рекурсивно применяя setAllNullableFieldsToNull() к элементам.
+ * Обрабатывает коллекцию (List/Set/Map), рекурсивно применяя [setAllNullableFieldsToNull] к её элементам.
+ *
+ * @param collection коллекция для обработки.
+ * @return Новая коллекция с обнулёнными nullable-элементами.
+ *
+ * Примечания:
+ * - Для Map обрабатываются только значения (ключи остаются без изменений).
+ * - Поддерживаются только стандартные коллекции (List, Set, Map).
  */
 private fun processCollection(collection: Any): Any {
     return when (collection) {
@@ -74,7 +85,9 @@ private fun processCollection(collection: Any): Any {
 }
 
 /**
- * Обрабатывает значение: если оно data-класс — рекурсивно обнуляет nullable-поля.
+ * Обрабатывает nullable-значение: если это data-класс, рекурсивно обнуляет его nullable-поля.
+ *
+ * @return Оригинальное значение (если не data-класс) или новый экземпляр с обнулёнными полями.
  */
 private fun Any.processNullableValue(): Any? {
     return if (this::class.isData) {
@@ -85,7 +98,9 @@ private fun Any.processNullableValue(): Any? {
 }
 
 /**
- * Проверяет, является ли тип коллекцией (List/Set/Map).
+ * Проверяет, является ли тип коллекцией (List, Set, Map) или их подтипом.
+ *
+ * @return `true`, если тип — коллекция.
  */
 private fun KType.isCollectionOrMap(): Boolean {
     return when (val classifier = this.classifier) {
