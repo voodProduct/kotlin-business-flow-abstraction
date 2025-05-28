@@ -1,8 +1,5 @@
 plugins {
     kotlin("jvm")
-//    kotlin("plugin.spring")
-//    id("org.springframework.boot")
-//    id("io.spring.dependency-management")
 }
 
 group = "ru.vood.flow"
@@ -29,7 +26,6 @@ dependencies {
     api("io.arrow-kt:arrow-core-jvm:2.1.1")
 
     testImplementation(kotlin("test"))
-//    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7-1.4-M3")
     testImplementation("io.kotest:kotest-runner-junit5:5.9.1")
     testImplementation("com.ocadotechnology.gembus:test-arranger:1.6.4")
 }
