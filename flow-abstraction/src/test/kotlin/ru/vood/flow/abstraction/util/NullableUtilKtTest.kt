@@ -43,9 +43,22 @@ class NullableUtilKtTest : FunSpec({
     test("test correct work collection") {
         val some = Arranger.some(Level_Collection::class.java)
 
-        val expected = Level_1(l = Level_2(l = Level_3()))
+        val allNullableFieldsToNull = some.setAllNullableFieldsToNull()
 
-        some shouldNotBe expected
-        some.setAllNullableFieldsToNull() shouldBe expected
+        val level2Excpected = Level_2(l = Level_3())
+
+        allNullableFieldsToNull.list.forEach {
+            it shouldBe level2Excpected
+        }
+
+        allNullableFieldsToNull.set.forEach {
+            it shouldBe level2Excpected
+        }
+
+
+        allNullableFieldsToNull.map.values.forEach {
+            it shouldBe level2Excpected
+        }
+
     }
 })

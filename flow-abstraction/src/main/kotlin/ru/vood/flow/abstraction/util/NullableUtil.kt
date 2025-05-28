@@ -13,25 +13,50 @@ fun <T : Any> T.setAllNullableFieldsToNull(): T {
     val args = constructor
         .parameters
         .associateWith { param ->
-            if (param.type.isMarkedNullable) {
-                null
-            } else {
-                kClass
-                    .memberProperties
-                    .find { it.name == param.name }
-                    ?.let { property ->
-                        property
-                            .getter
-                            .call(this)
-                            ?.let { data ->
-                                if (data::class.isData) {
-                                    data.setAllNullableFieldsToNull()
-                                } else {
-                                    data
-                                }
-                            }
+            val any = when {
+                // Если параметр nullable — сразу null
+                param.type.isMarkedNullable -> null
+                // Если параметр коллекция (List/Set/Map) — обрабатываем элементы
+                param.type.isCollectionOrMap() -> {
+                    val property = kClass.memberProperties.find { it.name == param.name }
+                    property?.getter?.call(this)?.let { collection ->
+                        processCollection(collection)
                     }
+                }
+                // Если параметр data-класс — рекурсивный вызов
+                else -> {
+                    kClass.memberProperties.find { it.name == param.name }
+                        ?.getter?.call(this)?.let { value ->
+                            if (value::class.isData) {
+                                value.setAllNullableFieldsToNull()
+                            } else {
+                                value
+                            }
+                        }
+                }
             }
+
+            any
+
+//            if (param.type.isMarkedNullable) {
+//                null
+//            } else {
+//                kClass
+//                    .memberProperties
+//                    .find { it.name == param.name }
+//                    ?.let { property ->
+//                        property
+//                            .getter
+//                            .call(this)
+//                            ?.let { data ->
+//                                if (data::class.isData) {
+//                                    data.setAllNullableFieldsToNull()
+//                                } else {
+//                                    data
+//                                }
+//                            }
+//                    }
+//            }
         }
     return constructor.callBy(args)
 }
