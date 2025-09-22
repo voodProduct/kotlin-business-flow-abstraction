@@ -7,7 +7,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -22,8 +22,8 @@ dependencies {
     implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.10.2"))
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    implementation("org.springframework:spring-web:6.2.5")
-    implementation("org.springframework:spring-webflux:6.2.5")
+    implementation("org.springframework:spring-web:6.2.11")
+    implementation("org.springframework:spring-webflux:6.2.11")
     api("io.arrow-kt:arrow-core-jvm:2.1.1")
 
     testImplementation(kotlin("test"))

@@ -8,7 +8,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
@@ -23,7 +23,7 @@ dependencies {
     implementation("io.kotest:kotest-runner-junit5")
     implementation("io.kotest:kotest-framework-datatest")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.ocadotechnology.gembus:test-arranger:1.6.4")
+    implementation("com.ocadotechnology.gembus:test-arranger:1.6.4.1")
 
 //    // https://mvnrepository.com/artifact/io.arrow-kt/arrow-core
 //
