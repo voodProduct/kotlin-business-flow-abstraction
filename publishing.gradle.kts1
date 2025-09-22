@@ -1,0 +1,59 @@
+// publishing.gradle.kts
+apply(plugin = "maven-publish")
+
+configure<PublishingExtension> {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+
+            // Настройка метаданных публикации
+            groupId = project.group.toString()
+            artifactId = project.name
+            version = project.version.toString()
+
+            // Добавление источников (опционально)
+//            artifact(tasks.register<Jar>("sourcesJar") {
+//                from(sourceSets.main.get().allSource)
+//                archiveClassifier.set("sources")
+//            })
+
+            // Добавление javadoc (опционально)
+//            artifact(tasks.register<Jar>("javadocJar") {
+//                from(tasks.javadoc)
+//                archiveClassifier.set("javadoc")
+//            })
+
+            // Настройка pom.xml
+            pom {
+                name.set(project.name)
+                description.set("Description for ${project.name}")
+                url.set("https://github.com/voodProduct/kotlin-business-flow-abstraction.git")
+
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("igorvood")
+                        name.set("Balitsky Igor")
+                        email.set("your.email@example.com")
+                    }
+                }
+
+//                scm {
+//                    connection.set("scm:git:git://github.com/your-repo.git")
+//                    developerConnection.set("scm:git:ssh://github.com/your-repo.git")
+//                    url.set("https://github.com/your-repo")
+//                }
+            }
+        }
+    }
+
+    repositories {
+        mavenLocal()  // Публикация в ~/.m2/repository
+    }
+}

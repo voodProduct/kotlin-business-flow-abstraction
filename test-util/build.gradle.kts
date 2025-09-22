@@ -16,32 +16,22 @@ repositories {
     mavenCentral()
 }
 
+val jupiterVersion = "5.13.4"
+val kotestVersion = "5.9.1"
+val arrangerVersion = "1.6.4.1"
 dependencies {
-
-    implementation(platform("io.kotest:kotest-bom:5.9.1"))
+    implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
 
     implementation("io.kotest:kotest-runner-junit5")
     implementation("io.kotest:kotest-framework-datatest")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.ocadotechnology.gembus:test-arranger:1.6.4.1")
 
-//    // https://mvnrepository.com/artifact/io.arrow-kt/arrow-core
-//
-//
-//    implementation(platform("io.arrow-kt:arrow-stack:2.1.1"))
-//    implementation(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.10.2"))
-//    implementation("org.jetbrains.kotlin:kotlin-reflect")
-//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-//    implementation("org.springframework:spring-web:6.2.5")
-//    implementation("org.springframework:spring-webflux:6.2.5")
-//    api("io.arrow-kt:arrow-core-jvm:2.1.1")
-//
-//    testImplementation(kotlin("test"))
-//
-//    testImplementation(platform("io.kotest:kotest-bom:5.9.1"))
-//    testImplementation("io.kotest:kotest-framework-api-jvm")
-//    testImplementation("io.kotest:kotest-runner-junit5")
-//    testImplementation("com.ocadotechnology.gembus:test-arranger:1.6.4")
+    implementation("org.reflections:reflections:0.10.2")
+
+    implementation("org.junit.jupiter:junit-jupiter-engine:$jupiterVersion")
+    implementation("org.junit.jupiter:junit-jupiter-params:$jupiterVersion")
+
+    implementation("com.ocadotechnology.gembus:test-arranger:$arrangerVersion")
 }
 
 kotlin {
