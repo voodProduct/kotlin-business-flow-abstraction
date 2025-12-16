@@ -3,7 +3,7 @@ plugins {
 }
 
 allprojects {
-    group = "ru.vood.kotlin" // Укажите вашу группу
+    group = "ru.vood.flow.kotlin" // Укажите вашу группу
     version = "1.0.0" // Укажите версию
 
     repositories {
