@@ -1,5 +1,7 @@
 package ru.vood.flow.abstraction.router.abstraction
 
+import arrow.core.NonEmptySet
+import arrow.core.nonEmptySetOf
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.runBlocking
@@ -43,7 +45,7 @@ enum class TestWorkerId : IWorkerId {
 
 // Тестовый рабочий объект
 class TestWorker(private val id: TestWorkerId) : IWorker<String, String, TestWorkerId> {
-    override val workerIds: Set<TestWorkerId> = setOf(id)
+    override val workerIds: NonEmptySet<TestWorkerId> = nonEmptySetOf(id)
 
     override suspend fun doWork(data: String, wId: TestWorkerId): String {
         return "$data processed by $wId"

@@ -1,5 +1,7 @@
 package ru.vood.flow.abstraction.router.abstraction.byInOutClass
 
+import arrow.core.NonEmptySet
+import arrow.core.nonEmptySetOf
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import kotlin.reflect.KClass
@@ -41,8 +43,8 @@ interface ITestWorker<T : IInTestDto, R : IOutTestDto> : IWorkerByInOutClass<T, 
 
 
 open class T1 : ITestWorker<In_1, Out_1> {
-    override val workerIds: Set<InOutIdDto<In_1, Out_1>>
-        get() = setOf(InOutIdDto(In_1::class, Out_1::class))
+    override val workerIds: NonEmptySet<InOutIdDto<In_1, Out_1>>
+        get() = nonEmptySetOf(InOutIdDto(In_1::class, Out_1::class))
 
     override suspend fun doWork(data: In_1, wId: InOutIdDto<In_1, Out_1>): Out_1 = Out_1
 }
@@ -50,8 +52,8 @@ open class T1 : ITestWorker<In_1, Out_1> {
 class TDunlicate : T1()
 
 class T2 : ITestWorker<InTestDto2_3, OutTestDto2_3> {
-    override val workerIds: Set<InOutIdDto<InTestDto2_3, OutTestDto2_3>>
-        get() = setOf(InOutIdDto(In_2::class, Out_2::class), InOutIdDto(In_3::class, Out_3::class))
+    override val workerIds: NonEmptySet<InOutIdDto<InTestDto2_3, OutTestDto2_3>>
+        get() = nonEmptySetOf(InOutIdDto(In_2::class, Out_2::class), InOutIdDto(In_3::class, Out_3::class))
 
     override suspend fun doWork(data: InTestDto2_3, wId: InOutIdDto<InTestDto2_3, OutTestDto2_3>): OutTestDto2_3 =
         when (data) {

@@ -1,5 +1,8 @@
 package ru.vood.flow.abstraction.router.abstraction
 
+import arrow.core.NonEmptySet
+import arrow.core.nonEmptySetOf
+
 /**
  * Интерфейс, представляющий рабочую единицу (работник), способную обрабатывать данные заданного типа и возвращать результат другого типа.
  *
@@ -16,7 +19,7 @@ interface IWorker<
      * Множество идентификаторов, связанных с данным работником.
      * Позволяет одному работнику иметь несколько возможных идентификаторов.
      */
-    val workerIds: Set<WORKER_ID>
+    val workerIds: NonEmptySet<WORKER_ID>
 
     /**
      * Функция для выполнения основной работы, которую выполняет работник.
@@ -35,8 +38,8 @@ interface IWorkerSingleId<
         > : IWorker<T, R, WORKER_ID> {
     val workerId: WORKER_ID
 
-    override val workerIds: Set<WORKER_ID>
-        get() = setOf(workerId)
+    override val workerIds: NonEmptySet<WORKER_ID>
+        get() = nonEmptySetOf(workerId)
 
     suspend fun doWork(data: T): R = doWork(data, workerId)
 }
