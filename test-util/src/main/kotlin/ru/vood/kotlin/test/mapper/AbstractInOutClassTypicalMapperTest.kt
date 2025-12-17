@@ -51,8 +51,6 @@ abstract class AbstractInOutClassTypicalMapperTest<T : Any, R : Any, WORKER_ID :
                         extractedVal shouldBe expectedVal
                     }
                 }
-
-
             }
         }
     }
