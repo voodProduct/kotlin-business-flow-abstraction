@@ -50,18 +50,6 @@ abstract class AbstractInOutClassTypicalMapperTest<T : Any, R : Any, WORKER_ID :
                         val extractedVal: Any? = extractFun(mapData)
                         extractedVal shouldBe expectedVal
                     }
-                    is TestCaseData<T, R> -> {
-                        if (error == null) {
-                            val mapData: R = iMapper.doWork(testCaseTestData, workerId)
-                            val extractedVal: Any? = extractFun(mapData)
-                            extractedVal shouldBe expectedVal
-                        } else {
-                            val shouldThrow = shouldThrow<IllegalStateException> {
-                                iMapper.doWork(testCaseTestData, workerId)
-                            }
-                            shouldThrow.message shouldBe error
-                        }
-                    }
                 }
 
 
