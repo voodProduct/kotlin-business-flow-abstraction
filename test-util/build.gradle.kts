@@ -20,6 +20,7 @@ val jupiterVersion = "5.13.4"
 val kotestVersion = "5.9.1"
 val arrangerVersion = "1.6.4.1"
 dependencies {
+    implementation(project(":flow-abstraction"))
     implementation(platform("io.kotest:kotest-bom:$kotestVersion"))
 
     implementation("io.kotest:kotest-runner-junit5")
